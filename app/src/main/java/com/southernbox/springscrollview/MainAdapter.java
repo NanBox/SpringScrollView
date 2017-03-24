@@ -14,12 +14,12 @@ import java.util.List;
  * 主页列表适配器
  */
 
-public class MainAdapter extends RecyclerView.Adapter {
+class MainAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
     private List<String> mList;
 
-    public MainAdapter(Context context, List<String> mList) {
+    MainAdapter(Context context, List<String> mList) {
         this.mContext = context;
         this.mList = mList;
     }
