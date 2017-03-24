@@ -34,11 +34,24 @@ public class SpringScrollView extends NestedScrollView {
     public boolean onTouchEvent(MotionEvent e) {
         switch (e.getAction()) {
             case MotionEvent.ACTION_MOVE:
-                if (getScrollY() == 0) {
+                if (getScrollY() <= 0) {
+                    //顶部下拉
                     if (startDragY == 0) {
                         startDragY = e.getRawY();
                     }
                     if (e.getRawY() - startDragY > 0) {
+                        setTranslationY((e.getRawY() - startDragY) / 3);
+                        return true;
+                    } else {
+                        springAnim.cancel();
+                        setTranslationY(0);
+                    }
+                } else if ((getScrollY() + getHeight()) >= getChildAt(0).getMeasuredHeight()) {
+                    //顶部上拉
+                    if (startDragY == 0) {
+                        startDragY = e.getRawY();
+                    }
+                    if (e.getRawY() - startDragY < 0) {
                         setTranslationY((e.getRawY() - startDragY) / 3);
                         return true;
                     } else {
