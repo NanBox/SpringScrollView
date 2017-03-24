@@ -16,10 +16,10 @@ import android.view.VelocityTracker;
 public class SpringScrollView extends NestedScrollView {
 
     private float downY;
-    private float springY;
-    private VelocityTracker velocityTracker;
+    private float startDragY;
+//    private VelocityTracker velocityTracker;
     private boolean canSpring;
-    private SpringAnimation animY;
+    private SpringAnimation springAnim;
 
     public SpringScrollView(Context context) {
         this(context, null);
@@ -31,8 +31,8 @@ public class SpringScrollView extends NestedScrollView {
 
     public SpringScrollView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        velocityTracker = VelocityTracker.obtain();
-        animY = new SpringAnimation(this, SpringAnimation.TRANSLATION_Y, 0);
+//        velocityTracker = VelocityTracker.obtain();
+        springAnim = new SpringAnimation(this, SpringAnimation.TRANSLATION_Y, 0);
     }
 
     @Override
@@ -55,37 +55,37 @@ public class SpringScrollView extends NestedScrollView {
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 downY = e.getRawY();
-                velocityTracker.addMovement(e);
+//                velocityTracker.addMovement(e);
                 return true;
             case MotionEvent.ACTION_MOVE:
                 if (canSpring || (getScrollY() == 0 && e.getRawY() - downY > 0)) {
-                    if (springY == 0) {
-                        springY = e.getRawY();
+                    if (startDragY == 0) {
+                        startDragY = e.getRawY();
                     }
-                    setTranslationY((e.getRawY() - springY) / 3);
-                    velocityTracker.addMovement(e);
+                    setTranslationY((e.getRawY() - startDragY) / 3);
+//                    velocityTracker.addMovement(e);
                     canSpring = true;
                     return true;
                 } else if (e.getRawY() - downY < 0) {
-                    animY.cancel();
+                    springAnim.cancel();
                     setTranslationY(0);
                 }
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 if (canSpring) {
-                    velocityTracker.computeCurrentVelocity(1000);
+//                    velocityTracker.computeCurrentVelocity(1000);
                     if (getTranslationY() != 0) {
                         //刚度 默认1200 值越大回弹的速度越快
-                        animY.getSpring().setStiffness(800.0f);
+                        springAnim.getSpring().setStiffness(800.0f);
                         //阻尼 默认0.5 值越小，回弹之后来回的次数越多
-                        animY.getSpring().setDampingRatio(0.50f);
-                        animY.setStartVelocity(velocityTracker.getYVelocity());
-                        animY.start();
+                        springAnim.getSpring().setDampingRatio(0.50f);
+//                        springAnim.setStartVelocity(velocityTracker.getYVelocity());
+                        springAnim.start();
                     }
-                    velocityTracker.clear();
+//                    velocityTracker.clear();
                     canSpring = false;
-                    springY = 0;
+                    startDragY = 0;
                     return true;
                 }
                 break;
