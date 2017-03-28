@@ -39,10 +39,11 @@ public class SpringScrollView extends NestedScrollView {
                     if (startDragY == 0) {
                         startDragY = e.getRawY();
                     }
-                    if (e.getRawY() - startDragY > 0) {
+                    if (e.getRawY() - startDragY >= 0) {
                         setTranslationY((e.getRawY() - startDragY) / 3);
                         return true;
                     } else {
+                        startDragY = 0;
                         springAnim.cancel();
                         setTranslationY(0);
                     }
@@ -51,10 +52,11 @@ public class SpringScrollView extends NestedScrollView {
                     if (startDragY == 0) {
                         startDragY = e.getRawY();
                     }
-                    if (e.getRawY() - startDragY < 0) {
+                    if (e.getRawY() - startDragY <= 0) {
                         setTranslationY((e.getRawY() - startDragY) / 3);
                         return true;
                     } else {
+                        startDragY = 0;
                         springAnim.cancel();
                         setTranslationY(0);
                     }
