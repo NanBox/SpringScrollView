@@ -28,6 +28,10 @@ public class SpringScrollView extends NestedScrollView {
     public SpringScrollView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         springAnim = new SpringAnimation(this, SpringAnimation.TRANSLATION_Y, 0);
+        //刚度 默认1200 值越大回弹的速度越快
+        springAnim.getSpring().setStiffness(800.0f);
+        //阻尼 默认0.5 值越小，回弹之后来回的次数越多
+        springAnim.getSpring().setDampingRatio(0.50f);
     }
 
     @Override
@@ -48,7 +52,7 @@ public class SpringScrollView extends NestedScrollView {
                         setTranslationY(0);
                     }
                 } else if ((getScrollY() + getHeight()) >= getChildAt(0).getMeasuredHeight()) {
-                    //顶部上拉
+                    //底部上拉
                     if (startDragY == 0) {
                         startDragY = e.getRawY();
                     }
@@ -65,10 +69,6 @@ public class SpringScrollView extends NestedScrollView {
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
                 if (getTranslationY() != 0) {
-                    //刚度 默认1200 值越大回弹的速度越快
-                    springAnim.getSpring().setStiffness(800.0f);
-                    //阻尼 默认0.5 值越小，回弹之后来回的次数越多
-                    springAnim.getSpring().setDampingRatio(0.50f);
                     springAnim.start();
                 }
                 startDragY = 0;
