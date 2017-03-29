@@ -68,7 +68,7 @@ public boolean onTouchEvent(MotionEvent e) {
                     setTranslationY((e.getRawY() - startDragY) / 3);
                     return true;
                 } else {
-					startDragY = 0;
+                    startDragY = 0;
                     springAnim.cancel();
                     setTranslationY(0);
                 }
