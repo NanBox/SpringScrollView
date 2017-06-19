@@ -1,5 +1,6 @@
 package com.southernbox.springscrollview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.animation.SpringAnimation;
 import android.support.annotation.Nullable;
@@ -35,6 +36,7 @@ public class SpringScrollView extends NestedScrollView {
     }
 
     @Override
+    @SuppressLint("ClickableViewAccessibility")
     public boolean onTouchEvent(MotionEvent e) {
         switch (e.getAction()) {
             case MotionEvent.ACTION_MOVE:

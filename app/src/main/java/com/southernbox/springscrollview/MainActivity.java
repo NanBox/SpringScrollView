@@ -1,7 +1,7 @@
 package com.southernbox.springscrollview;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +15,7 @@ import java.util.List;
  * 主页面
  */
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
         };
         mRecyclerView.setLayoutManager(layoutManager);
         layoutManager.setAutoMeasureEnabled(true);
-        String[] names = getResources().getStringArray(R.array.query_suggestions);
+        String[] names = getResources().getStringArray(R.array.nba);
         List<String> mList = new ArrayList<>();
         Collections.addAll(mList, names);
         MainAdapter mAdapter = new MainAdapter(this, mList);
