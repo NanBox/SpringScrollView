@@ -1,4 +1,4 @@
-package com.southernbox.springscrollview
+package com.southernbox.springscrollview.sample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         initView()
     }
 
-    fun initView() {
+    private fun initView() {
         val layoutManager = object : LinearLayoutManager(this) {
             override fun canScrollVertically(): Boolean {
                 return false

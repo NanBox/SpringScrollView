@@ -1,4 +1,4 @@
-package com.southernbox.springscrollview
+package com.southernbox.springscrollview.sample
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
