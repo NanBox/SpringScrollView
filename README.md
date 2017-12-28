@@ -4,7 +4,7 @@
 [![](https://img.shields.io/badge/API-16+-green.svg?style=flat)](https://android-arsenal.com/api?level=16)
 [![](https://badge.juejin.im/entry/58d8d407128fe1006cd01f41/likes.svg?style=flat)](https://juejin.im/entry/58d8d407128fe1006cd01f41/detail)
 
-# SpringAnimation
+# SpringScrollView
 
 A ScrollView with spring drop-down effect.
 
